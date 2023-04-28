@@ -1,4 +1,4 @@
-# 前端移动端适配
+# 移动端适配
 
 ### 安装amfe-flexible和postcss-px2rem
 ```
