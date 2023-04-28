@@ -1,4 +1,17 @@
-# hello-world
+# 开箱即用的h5模板
+
+- [√] 🎉 rem配置，自动转换px为rem；
+- [√] 🍀 集成service-worker；
+- [√] 🏁 axios二次封装；
+- [√] 💃🏻 pinia+pinia-plugin-persist实现状态管理，数据持久化；
+- [√] 🛠 图片懒加载v-lazy指令；
+
+
+### [移动端rem配置](https://github.com/unoo2023/vue3-template/blob/master/set_rem.md)
+
+### [service-worker配置](https://github.com/unoo2023/vue3-template/blob/master/set-service-worker.md)
+
+### [pinia+pinia-plugin-persist示例](https://github.com/unoo2023/vue3-template/blob/master/set-pinia.md)
 
 ## Project setup
 ```
@@ -19,12 +32,6 @@ yarn build
 ```
 yarn lint
 ```
-
-### [移动端rem配置](https://github.com/unoo2023/vue3-template/blob/master/set_rem.md)
-
-### [service-worker配置](https://github.com/unoo2023/vue3-template/blob/master/set-service-worker.md)
-
-### [pinia+pinia-plugin-persist本地持久化示例](https://github.com/unoo2023/vue3-template/blob/master/set-pinia.md)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
