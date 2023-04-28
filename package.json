@@ -9,8 +9,12 @@
   },
   "dependencies": {
     "register-service-worker": "^1.7.2",
+    "axios": "^1.2.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vant": "^4.0.6",
+    "pinia": "^2.0.28",
+    "pinia-plugin-persist": "^1.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -21,12 +25,14 @@
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "amfe-flexible": "^2.2.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
+    "postcss-pxtorem": "^6.0.0",
     "prettier": "^2.4.1",
     "typescript": "~4.5.5"
   }
