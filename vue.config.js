@@ -1,5 +1,8 @@
 const { defineConfig } = require("@vue/cli-service");
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 module.exports = defineConfig({
   transpileDependencies: true,
   publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
@@ -42,6 +45,7 @@ module.exports = defineConfig({
         "~": path.join(__dirname, "./src/components"),
       },
     },
+    plugins: [],
     module: {
       rules: [
         {
@@ -57,7 +61,34 @@ module.exports = defineConfig({
     },
     optimization: {
       minimize: true,
-      minimizer: [],
+      minimizer: [
+        new TerserPlugin({
+          parallel: true,
+          terserOptions: {
+            toplevel: true,
+            ie8: true,
+            safari10: true,
+          },
+        }),
+        new CssMinimizerPlugin({
+          parallel: true,
+          minimizerOptions: {
+            preset: "advanced",
+          },
+        }),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ["gifsicle", { interlaced: true }],
+                ["jpegtran", { progressive: true }],
+                ["optipng", { optimizationLevel: 5 }],
+              ],
+            },
+          },
+        }),
+      ],
     },
   },
 });
