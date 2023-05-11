@@ -9,9 +9,10 @@
 │  │-  components  公共组件
 │  |-  assets ---- 公共静态资源
 ```
-#### 安装copy-webpack-plugin
+#### 安装copy-webpack-plugin和npm-run-all
 ```
 npm install copy-webpack-plugin --save-dev
+npm install npm-run-all --save-dev
 
 ```
 
@@ -158,13 +159,11 @@ module.exports = defineConfig({
 #### package.json
 ```
 "scripts": {
+  "dev":"npm-run-all --parallel dev:*", // 启动所有
+  "build": "npm-run-all --parallel build:*",// 打包所有
   "dev:apple": "vue-cli-service serve",
   "dev:banana": "vue-cli-service serve",
   "build:apple": "vue-cli-service build",
   "build:banana": "vue-cli-service build",
-  // 打包所有
-  "build": "npm run build:apple && npm run build:banana",
 },
 ```
-#### to do list
-// 启动所有需要shell新开终端
