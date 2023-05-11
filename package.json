@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev:apple": "vue-cli-service serve",
+    "dev:banana": "vue-cli-service serve",
+    "build:apple": "vue-cli-service build",
+    "build:banana": "vue-cli-service build",
+    "build": "npm run build:apple && npm run build:banana",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -26,6 +29,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "amfe-flexible": "^2.2.1",
+    "copy-webpack-plugin": "^11.0.0",
     "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

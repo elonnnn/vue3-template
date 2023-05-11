@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
-    path: "/lazy-image",
+    path: "/lazy",
     name: "lazy",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

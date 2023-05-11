@@ -3,49 +3,47 @@ const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const multipageConfig = require("./multi.config.js");
+
+console.log(multipageConfig.process);
 module.exports = defineConfig({
   transpileDependencies: true,
   publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
-  outputDir: "dist",
+  outputDir: multipageConfig.process.outputDir,
   assetsDir: "static",
   lintOnSave: process.env.NODE_ENV !== "production",
   productionSourceMap: process.env.NODE_ENV === "development",
+  pages: multipageConfig.process.pages,
   devServer: {
-    port: 8080,
-    proxy: {
-      "/api": {
-        target: "https://example.com",
-        changeOrigin: true,
-        pathRewrite: { "^/api": "" },
-      },
-    },
+    port: multipageConfig.process.port,
+    proxy: multipageConfig.process.proxyTable,
   },
   pluginOptions: {
     webpackBundleAnalyzer: {
       openAnalyzer: true,
     },
   },
-  pwa: {
-    name: "My App",
-    themeColor: "#4DBA87",
-    msTileColor: "#000000",
-    appleMobileWebAppCapable: "yes",
-    appleMobileWebAppStatusBarStyle: "black",
-    // 【InjectManifest】allows you to start with an existing service worker file, and creates a copy of that file with a "precache manifest" injected into it.
-    workboxPluginMode: "InjectManifest",
-    workboxOptions: {
-      swSrc: "./src/service-worker.js",
-    },
-  },
+  pwa: multipageConfig.process.pwa,
   configureWebpack: {
     devtool: process.env.NODE_ENV === "development" ? "source-map" : undefined,
     resolve: {
       alias: {
         "@": path.join(__dirname, "./src"),
         "~": path.join(__dirname, "./src/components"),
+        ...multipageConfig.moduleAlias,
       },
     },
-    plugins: [],
+    plugins: [
+      new CopyPlugin({
+        patterns: [
+          {
+            from: `src/${multipageConfig.process.name}/public`,
+            to: "./",
+          },
+        ],
+      }),
+    ],
     module: {
       rules: [
         {
