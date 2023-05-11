@@ -31,7 +31,6 @@ module.exports = defineConfig({
       alias: {
         "@": path.join(__dirname, "./src"),
         "~": path.join(__dirname, "./src/components"),
-        ...multipageConfig.moduleAlias,
       },
     },
     plugins: [

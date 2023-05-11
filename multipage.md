@@ -1,12 +1,21 @@
 
-
-### 安装copy-webpack-plugin
+### 多模块集成，多项目共用一份配置，可以互相依赖，也可以独立打包部署
+```
+├─src
+│  │-  apple ----- 应用1
+│  │-  banana ---- 应用2
+│  │-  stores ---- 状态管理
+│  │-  utils ----- 工具函数
+│  │-  components  公共组件
+│  |-  assets ---- 公共静态资源
+```
+#### 安装copy-webpack-plugin
 ```
 npm install copy-webpack-plugin --save-dev
 
 ```
 
-### multi.config.js
+#### multi.config.js
 ```
 const argvs = process.argv.slice(2);
 
@@ -110,7 +119,7 @@ module.exports = multiConfig;
 
 ```
 
-### vue.config.js
+#### vue.config.js
 ```
 const { defineConfig } = require("@vue/cli-service");
 const path = require("path");
@@ -130,12 +139,6 @@ module.exports = defineConfig({
   },
   pwa: multipageConfig.process.pwa,
   configureWebpack: {
-    resolve: {
-      alias: {
-        // 添加
-        ...multipageConfig.moduleAlias,
-      },
-    },
     plugins: [
       // 添加
       new CopyPlugin({
@@ -152,7 +155,7 @@ module.exports = defineConfig({
 
 ```
 
-### package.json
+#### package.json
 ```
 "scripts": {
   "dev:apple": "vue-cli-service serve",
@@ -163,5 +166,5 @@ module.exports = defineConfig({
   "build": "npm run build:apple && npm run build:banana",
 },
 ```
-### to do list
+#### to do list
 // 启动所有需要shell新开终端
